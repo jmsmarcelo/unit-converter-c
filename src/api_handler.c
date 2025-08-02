@@ -72,7 +72,7 @@ void handle_api(client_header *header) {
             header->status_code = 400;
             set_string(&(header->body_response), "{\"message\":\"No request body\"}");
         } else {
-            unit_converter(header);
+            handle_convert(header);
         }
     } else {
         header->status_code = 404;
