@@ -147,7 +147,7 @@ void *handle_client(void *arg) {
     header->http_version = NULL;
     header->content_length = 0;
     header->content_type = NULL;
-    header->error_msg = NULL;
+    header->status_msg = NULL;
     header->body_request = NULL;
     header->body_response = NULL;
     handle_request(header);
@@ -161,7 +161,7 @@ void *handle_client(void *arg) {
     if(header->method) free(header->method);
     if(header->path) free(header->path);
     if(header->http_version) free(header->http_version);
-    if(header->error_msg) free(header->error_msg);
+    if(header->status_msg) free(header->status_msg);
     if(header->body_request) free(header->body_request);
     if(header->body_response) free(header->body_response);
 #ifdef _WIN32

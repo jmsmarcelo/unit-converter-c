@@ -17,7 +17,7 @@ typedef struct {
     char *content_type;
     int content_length;
     int status_code;
-    char *error_msg;
+    char *status_msg;
     char *body_request;
     char *body_response;
 } client_header;
