@@ -26,7 +26,7 @@ void send_response(client_header *header, const char *content) {
                     "Content-Type: %s\r\n"
                     "Content-Length: %d\r\n"
                     "Connection: close\r\n\r\n",
-                    header->status_code, get_status(header),
+                    header->status_code, get_status(header->status_code),
                     header->content_type,
                     header->content_length);
     char *h = malloc(h_len + 1);
@@ -36,7 +36,7 @@ void send_response(client_header *header, const char *content) {
         "Content-Type: %s\r\n"
         "Content-Length: %d\r\n"
         "Connection: close\r\n\r\n",
-        header->status_code, get_status(header),
+        header->status_code, get_status(header->status_code),
         header->content_type,
         header->content_length);
     int sent_h = send_all(header, h, h_len);

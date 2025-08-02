@@ -44,3 +44,38 @@ int set_formatted_string(char **field, const char *fmt, ...) {
     va_end(args);
     return len;
 }
+int get_json_value(const char *json, char *key, char *value, size_t value_len) {
+    const char *pos = strstr(json, key);
+    if(!pos) return 0;
+    pos += strlen(key);
+    pos = strchr(pos, ':');
+    if(!pos) return 0;
+    pos++;
+    int is_string = 0;
+    while(*pos == '"' || *pos == ' ' || *pos == '\t' || *pos == '\n' || *pos == '\r') {
+        if(*pos == '"') is_string = 1;
+        pos++;
+    }
+    const char *start = pos;
+    while(*pos) {
+        if(is_string && *pos == '"') {
+            const char *b = pos - 1;
+            int backslashes = 0;
+            while(b >= start && *b == '\\') {
+                backslashes++;
+                b--;
+            }
+            if(backslashes % 2 == 0) {
+                break;
+            }
+        } else if(!is_string && (*pos == ',' || *pos == '}')) {
+            break;
+        }
+        pos++;
+    }
+    size_t len = pos - start;
+    if(len >= value_len) return 0;
+    memcpy(value, start, len);
+    value[len] = '\0';
+    return len;
+}

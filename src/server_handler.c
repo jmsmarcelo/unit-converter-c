@@ -151,7 +151,7 @@ void *handle_client(void *arg) {
     header->body_request = NULL;
     header->body_response = NULL;
     handle_request(header);
-    if(header->status_code == 0 || !header->path) {
+    if(header->status_code == 0 || !header->path || !header->method || !header->http_version) {
         fprintf(stderr, "[WARN] Invalid request or client disconnected.\n");
     } else if(strncmp(header->path, "/api/", 5) == 0) {
         handle_api(header);
