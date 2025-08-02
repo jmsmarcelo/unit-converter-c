@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <signal.h>
 #ifdef _WIN32
 #include <WinSock2.h>
@@ -66,7 +67,7 @@ int start_server() {
             pthread_t thread_id;
             if(pthread_create(&thread_id, NULL, handle_client, header) != 0) {
                 perror("Error creating thread");
-                shutdown(handle_client, SHUT_RDWR);
+                shutdown(header->client_socket, SHUT_RDWR);
                 close(header->client_socket);
                 free(header);
             } else {
