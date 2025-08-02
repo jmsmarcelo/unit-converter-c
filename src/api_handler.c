@@ -54,7 +54,7 @@ void handle_convert(client_header *header) {
                 set_string(&(header->body_response), "{\"message\":\"Invalid conversion request\"}");
         }
     } else {
-        set_string(&(header->body_response), "{\"message\":\"Malformed JSON in resquest body\"}");
+        set_string(&(header->body_response), "{\"message\":\"Malformed JSON in request body\"}");
     }
     header->status_code = 400;
 }
