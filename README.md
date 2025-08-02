@@ -108,7 +108,8 @@ POST /api/unit-converter
 ```
 
 ## 🖼️ Screenshots
-
+![screenshot_front_1](https://github.com/user-attachments/assets/a03084cf-ded6-4e6b-a1fd-f5cf2d3c76d9)
+![screenshot_front_2](https://github.com/user-attachments/assets/d887f59e-8a35-4640-91b5-fa19a6bf5522)
 
 ## 📜 License
 
