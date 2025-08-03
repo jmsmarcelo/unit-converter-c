@@ -8,7 +8,7 @@
 const char *get_server_setup_error_msg(int code);
 int get_http_port();
 #ifdef _WIN32
-SOCKT get_http_socket();
+SOCKET get_http_socket();
 int is_valid_socket(SOCKET sock);
 #else
 int get_http_socket();

@@ -6,6 +6,7 @@
 
 DWORD WINAPI handle_client(LPVOID arg);
 #else
-#endif
 void *handle_client(void *arg);
+#endif
+
 #endif
