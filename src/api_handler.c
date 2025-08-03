@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "../include/api_handler.h"
 #include "../include/unit_converter.h"
 #include "../include/server_utils.h"
@@ -63,7 +64,7 @@ void handle_api(client_header *header) {
         header->status_code = 405;
         set_formatted_string(&(header->status_msg), "The %s method is not allowed", header->method);
     }
-    strcpy(header->content_type, "application/json");
+    set_string(&(header->content_type), "application/json");
     if(header->status_code >= 400) {
         if(!header->status_msg) set_default_status_msg(header);
         set_formatted_string(&(header->body_response), "{\"message\":\"%s\"}", header->status_msg);

@@ -211,7 +211,12 @@ const char error_base_html[] =
     " </body>"
     " </html>";
 void handle_resource(client_header *header) {
-    if(strcmp(header->path, "/favicon.ico") == 0) header->status_code = 404;
+    if(strcmp(header->method, "GET") != 0) {
+        header->status_code = 405;
+        set_formatted_string(&(header->status_msg), "The %s method is not allowed", header->method);
+    } else if(strcmp(header->path, "/favicon.ico") == 0) {
+        header->status_code = 404;
+    }
     if(header->status_code >= 400) {
         if(!header->status_msg) set_default_status_msg(header);
         set_formatted_string(&(header->body_response), error_base_html,
